@@ -5,7 +5,7 @@ I am facing an issue where I cannot get a simple spring boot web project with ju
 ## Installation
 
 ```bash
-./gradlew clean build dist
+./gradlew clean build
 ```
 
 ## Run this code
@@ -16,7 +16,7 @@ I am facing an issue where I cannot get a simple spring boot web project with ju
 ## Test
 
 ```bash
-wget http://localhost:8080/sb-actuator-nodb.rwwise.dev/hello
+wget http://localhost:8080/hello
 ```
 
 ## License 
