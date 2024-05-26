@@ -33,5 +33,5 @@ The initial generation of this project was done with [Spring Boot Initializer](h
 * Spring Web
 * Spring Boot Actuator
 
-## License 
+## License
 [Apache Commons 2.0](LICENSE)

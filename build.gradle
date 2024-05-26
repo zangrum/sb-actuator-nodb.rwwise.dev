@@ -1,27 +1,77 @@
 plugins {
-	id 'java'
-	id 'org.springframework.boot' version '3.3.0'
-	id 'io.spring.dependency-management' version '1.1.5'
+  id 'java'
+  id 'org.springframework.boot' version '3.3.0'
+  id 'io.spring.dependency-management' version '1.1.5'
+  id "com.diffplug.spotless" version "6.25.0"
 }
 
 group = 'dev.rwwise'
 version = '0.0.1-SNAPSHOT'
 
 java {
-	sourceCompatibility = '21'
+  sourceCompatibility = '21'
 }
 
 repositories {
-	mavenCentral()
+  mavenCentral()
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-actuator'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+  implementation 'org.springframework.boot:spring-boot-starter-actuator'
+  implementation 'org.springframework.boot:spring-boot-starter-web'
+  testImplementation 'org.springframework.boot:spring-boot-starter-test'
+  testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 tasks.named('test') {
-	useJUnitPlatform()
+  useJUnitPlatform()
+}
+
+
+spotless {
+  // optional: limit format enforcement to just the files changed by this feature branch
+  //   ratchetFrom 'origin/main'
+  java {
+    target fileTree('.') {
+      include '**/*.java'
+      exclude '**/build/**', '**/build-*/**'
+    }
+    googleJavaFormat('1.22.0').aosp().reflowLongStrings().skipJavadocFormatting()
+    // fix formatting of type annotations
+    formatAnnotations()
+
+    // make sure every file has the following copyright header.
+    // optionally, Spotless can set copyright years by digging
+    // through git history (see "license" section below)
+    licenseHeader '/* Copyright &#169; $YEAR Richard W. Wise All Rights Reserved. */'
+  }
+  format 'misc', {
+    // define the files to apply `misc` to
+    target fileTree('.') {
+      include '**/*.md', '**/.gitignore', '**/.gitattributes'
+      exclude '**/build/**', '**/build-*/**'
+    }
+
+    // define the steps to apply to those files
+    trimTrailingWhitespace()
+    indentWithSpaces() // or spaces. Takes an integer argument if you don't like 4
+  }
+  groovyGradle {
+    target fileTree('.') {
+      include '**/*.gradle'
+      exclude '**/build/**', '**/build-*/**'
+    }
+    greclipse()
+    indentWithSpaces(2)
+    trimTrailingWhitespace()
+  }
+  format 'xml', {
+    target fileTree('.') {
+      include '**/*.xml'
+      exclude '**/build/**', '**/build-*/**'
+    }
+    eclipseWtp('xml')
+    trimTrailingWhitespace()
+    indentWithSpaces(2)
+  }
 }
