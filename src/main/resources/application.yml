@@ -1,0 +1,16 @@
+spring:
+  application:
+    name:
+      Spring Boot Actuator with No DB
+management:
+  endpoints:
+    enabled-by-default: true
+    web:
+      exposure:
+        include: '*'
+        exclude: threaddump
+  endpoint:
+    health:
+      enabled: true
+    shutdown:
+      enabled: true
