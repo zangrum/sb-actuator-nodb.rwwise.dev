@@ -34,7 +34,7 @@ spotless {
   java {
     target fileTree('.') {
       include '**/*.java'
-      exclude '**/build/**', '**/build-*/**'
+      exclude '**/build/**', '**/build-*/**', '**/.gradle/**', '.husky/**'
     }
     googleJavaFormat('1.22.0').aosp().reflowLongStrings().skipJavadocFormatting()
     // fix formatting of type annotations
@@ -49,7 +49,7 @@ spotless {
     // define the files to apply `misc` to
     target fileTree('.') {
       include '**/*.md', '**/.gitignore', '**/.gitattributes'
-      exclude '**/build/**', '**/build-*/**'
+      exclude '**/build/**', '**/build-*/**', '**/.gradle/**', '.husky/**'
     }
 
     // define the steps to apply to those files
@@ -59,7 +59,7 @@ spotless {
   groovyGradle {
     target fileTree('.') {
       include '**/*.gradle'
-      exclude '**/build/**', '**/build-*/**'
+      exclude '**/build/**', '**/build-*/**', '**/.gradle/**', '.husky/**'
     }
     greclipse()
     indentWithSpaces(2)
@@ -68,7 +68,7 @@ spotless {
   format 'xml', {
     target fileTree('.') {
       include '**/*.xml'
-      exclude '**/build/**', '**/build-*/**'
+      exclude '**/build/**', '**/build-*/**', '**/.gradle/**', '.husky/**'
     }
     eclipseWtp('xml')
     trimTrailingWhitespace()
