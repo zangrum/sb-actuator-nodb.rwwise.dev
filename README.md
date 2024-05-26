@@ -16,7 +16,8 @@ I am facing an issue where I cannot get a simple spring boot web project with ju
 ## Test
 
 ```bash
-wget http://localhost:8080/actuator
+curl http://localhost:8080/actuator
+curl http://localhost:8080/hello
 ```
 ## Generation
 The initial generation of this project was done with [Spring Boot Initializer](https://start.spring.io/#!type=gradle-project&language=java&platformVersion=3.3.0&packaging=jar&jvmVersion=21&groupId=dev.rwwise&artifactId=sb_acutator_nodb&name=Spring%20Boot%20Actuator%20with%20No%20DB&description=Spring%20Boot%20Actuator%20with%20No%20DB%20Research%20Project&packageName=dev.rwwise.sb_acutator_nodb&dependencies=web,actuator)
